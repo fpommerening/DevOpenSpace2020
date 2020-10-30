@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: demo-a-ingress-nontls
+spec:
+  entryPoints:
+  - web
+  routes:
+  - match: Host(`mydep.trainer.container-training.de`)
+    kind: Rule
+    services:
+    - name: welcome-cluster
+      port: 80
