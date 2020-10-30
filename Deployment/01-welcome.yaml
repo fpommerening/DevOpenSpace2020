@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+  metadata:
+    name: welcome
+spec:
+  selector:
+    matchLabels:
+      app: welcome
+  template:
+    metadata:
+      labels:
+        app: welcome
+    spec:
+      containers:
+      - name: welcome
+        image: fpommerening/docker-training:latest
+      ports:
+      - containerPort: 80
