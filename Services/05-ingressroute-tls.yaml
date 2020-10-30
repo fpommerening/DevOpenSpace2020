@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: demo-a-ingress-tls
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - match: Host(`mydep.trainer.container-training.de`)
+    kind: Rule
+    services:
+    - name: welcome-cluster
+      port: 80
+  tls:
+    certResolver: myresolver
