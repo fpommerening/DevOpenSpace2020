@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: update-route
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: Host(`update.trainer.container-training.de`)
+    kind: Rule
+    services:
+    - name: update-srv
+      port: 80

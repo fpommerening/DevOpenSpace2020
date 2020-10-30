@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: updates-dep
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: updates-app
+  template:
+    metadata:
+      labels:
+        app: updates-app        
+    spec:
+      containers:
+      - name: app
+        image: fpommerening/container-training:webapp-v1
+        imagePullPolicy: Always
+        ports:
+        readinessProbe:
+            httpGet:
+                path: probe/index.html
+                port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 2
