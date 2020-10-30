@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: init-container-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: init-container-app
+  template:
+    metadata:
+      labels:
+        app: init-container-app
+    spec:
+      containers:
+        - name: app
+          image: fpommerening/container-training:initializer-main
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MYSQL_CNN
+              value: "Server=mariadb-srv;Database=demo-database;Uid=root;Pwd=mypassword"
+          ports:
+            - name: webs
+              containerPort: 80
+      initContainers:
+        - name: dbinit
+          image: fpommerening/container-training:initializer-init
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MYSQL_CNN
+              value: "Server=mariadb-srv;Database=demo-database;Uid=root;Pwd=mypassword"
+          args:
+            - "1"

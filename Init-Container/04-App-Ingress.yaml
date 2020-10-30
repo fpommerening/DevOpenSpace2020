@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: init-container-route
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`init-container.demo-apps.de`)
+    kind: Rule
+    services:
+    - name: init-container-srv
+      port: 80
+  tls:
+      certResolver: myresolver

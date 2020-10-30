@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mariadb-app
+  template:
+    metadata:
+      labels:
+        app: mariadb-app
+    spec:
+      containers:
+      - name: app
+        image: mariadb
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "mypassword"
+        - name: MYSQL_DATABASE
+          value: "demo-database"
+        ports:
+        - name: db
+          containerPort: 3306
