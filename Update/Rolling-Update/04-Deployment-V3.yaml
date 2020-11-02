@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: updates-dep
+spec:
+  replicas: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: updates-app
+  template:
+    metadata:
+      labels:
+        app: updates-app        
+    spec:
+      containers:
+      - name: app
+        image: fpommerening/container-training:webapp-v3
+        imagePullPolicy: Always
+        ports:
+        readinessProbe:
+            httpGet:
+                path: probe/index.html
+                port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 2

@@ -10,3 +10,4 @@ spec:
         name: app
    selector:
       app: updates-app
+      version: v3
