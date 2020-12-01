@@ -1,11 +1,4 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: welcome
-spec:
-  selector:
-   app: mydep
-  type: LoadBalancer
-  ports:
-  - port: 19080
-    targetPort: 80
+  name: welcome-loadbalancer

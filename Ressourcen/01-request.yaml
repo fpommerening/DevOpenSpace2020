@@ -1,25 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mddev-limiter
+  name: dep-limiter
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mddev-limiter
+      app: limiter
   template:
     metadata:
       labels:
-        app: mddev-limiter
+        app: limiter
     spec:
       containers:
         - name: app
           image: fpommerening/container-training:limiter
           imagePullPolicy: IfNotPresent
-          resources:
-            requests:
-              memory: "128Mi"
-              cpu: ".50"
-            limits:
-              memory: "256Mi"
-              cpu: "1.0"

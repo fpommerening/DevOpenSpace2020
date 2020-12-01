@@ -15,20 +15,5 @@ spec:
       containers:
       - name: app
         image: fpommerening/container-training:coffeemaker
-        imagePullPolicy: Always
-        ports:
-        - name: liveness-port
-          containerPort: 80
-        readinessProbe:
-          httpGet:
-            path: /probe/ready
-            port: liveness-port
-          initialDelaySeconds: 3
-          periodSeconds: 2
-        livenessProbe:
-          httpGet:
-            path: /probe/alive
-            port: liveness-port
-          initialDelaySeconds: 3
-          periodSeconds: 15        
+        imagePullPolicy: IfNotPresent
 

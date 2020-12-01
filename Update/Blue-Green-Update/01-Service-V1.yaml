@@ -9,5 +9,4 @@ spec:
       - port: 80
         name: app
    selector:
-      app: updates-app
-      version: v1
+      app: updates-app      

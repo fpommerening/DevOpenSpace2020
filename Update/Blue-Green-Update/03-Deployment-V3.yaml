@@ -7,12 +7,10 @@ spec:
   selector:
     matchLabels:
       app: updates-app
-      version: v3
   template:
     metadata:
       labels:
         app: updates-app        
-        version: v3
     spec:
       containers:
       - name: app
