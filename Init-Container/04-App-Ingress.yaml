@@ -4,12 +4,10 @@ metadata:
   name: init-container-route
 spec:
   entryPoints:
-    - websecure
+    - web
   routes:
-  - match: Host(`init-container.demo-apps.de`)
+  - match: Host(`init.trainer.container-training.de`)
     kind: Rule
     services:
     - name: init-container-srv
       port: 80
-  tls:
-      certResolver: myresolver
